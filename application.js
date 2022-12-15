@@ -1,13 +1,14 @@
-function add () {
-    let result = 0
-    for (let x of arguments) {
-        result += x
-    } return (result);
-};
+function add (...numbers) {
+    if (numbers.length > 0) {
+        return numbers.reduce((product, number) => product + number);
+    } else {
+        return 0
+    }
+}
 
 function subtract (...numbers) {
     if (numbers.length > 0) {
-        return numbers.reduce((product, number) => product - number)
+        return numbers.reduce((product, number) => product - number);
     } else {
         return 0
     }
