@@ -21,3 +21,11 @@ function multiply (...numbers) {
         return 0;
     }
 }
+
+function divide (...numbers) {
+    if (numbers.length > 0) {
+    return numbers.reduce((product, number) => product / number);
+    } else {
+        return 0;
+    }
+}
