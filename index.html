@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./application.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="./styles.css">
+    <script src="./application.js" defer></script>
     <title>Calculator</title>
 </head>
 <body>
     <h1>Calculator</h1>
     <div id="container">
-        <button id="clear">AC</button>
-        <button id="brackets">()</button>
-        <button id="percent">%</button>
-        <button id="divide">÷</button>
+        <div id="screenContainer"></div>
+        <button id="clear"><i class="material-symbols-outlined">delete</i></button>
+        <button id="backspace"><i class="material-symbols-outlined">backspace</i></button>
+        <button id="percent"><i class="material-symbols-outlined">percent</i></button>
+        <button id="divide" style="font-size:36px">÷</button>
         <button id="7">7</button>
         <button id="8">8</button>
         <button id="9">9</button>
@@ -26,10 +30,9 @@
         <button id="1">1</button>
         <button id="2">2</button>
         <button id="3">3</button>
-        <button id="addition">+</button>
+        <button id="addition"><i class="material-symbols-outlined">add</i></button>
         <button id="0">0</button>
         <button id="period">.</button>
-        <button id="backspace">{</button>
         <button id="equals">=</button>
     </div>
 </body>
