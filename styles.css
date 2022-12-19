@@ -43,7 +43,7 @@ button:active {
     -webkit-transition: all .5s;
     background-color: #e5e38c;
     transition-duration: 0.2s;
-    transform: scale(0.9);
+    transform: scale(0.8);
 }
 
 .num:hover {
