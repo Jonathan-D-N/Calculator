@@ -52,7 +52,7 @@ buttonFunctions.addEventListener('click', function(e) {
       else if (e.target.textContent === '÷' && screenText.textContent > 0) {
         key = '/'
         screenText.textContent += e.target.textContent
-    } else if (e.target.textContent === 'x' && screenText.textContent > 0) {
+    } else if (e.target.textContent === '*' && screenText.textContent > 0) {
         key = '*'
         screenText.textContent += e.target.textContent
     } else if (e.target.textContent === '-' && screenText.textContent > 0) {
@@ -63,8 +63,27 @@ buttonFunctions.addEventListener('click', function(e) {
         screenText.textContent += e.target.textContent
     }
 });
-buttonFunctions.addEventListener('click', function(element) {
-    if (element.target.textContent === '=') {
-        
-    }
+//equals operator
+const equalsButton = document.getElementById('equals');
+equalsButton.addEventListener('click', function(element) {
+        let str = screenText.textContent;
+        let arr = str.split('')
+        let result = [];
+        let currentNum = '';
+
+        for(let i = 0; i < arr.length; i++) {
+            let char = arr[i];
+            if (/[a-zA-Z0-9]/.test(char)){
+                currentNum += char;
+            } else {
+                if(currentNum.length > 0) {
+                    result.push(currentNum);
+                    currentNum = '';
+                }
+                result.push(char);
+            }
+        }
+        if(currentNum.length > 0) {
+            result.push(currentNum);
+        }
 });
