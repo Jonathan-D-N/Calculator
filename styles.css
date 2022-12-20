@@ -29,7 +29,13 @@ button {
     font-family: 'Poppins', sans-serif;
 }
 
-#addition {
+#equals {
+    grid-column: 4/4;
+    grid-row: 5/3;
+    border-radius: 20px;
+}
+
+#backspace {
     grid-column: 4/4;
     grid-row: 5/7;
     border-radius: 20px;
