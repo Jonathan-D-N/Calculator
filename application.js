@@ -29,11 +29,18 @@ function operate (num1, num2) {
 const screenText = document.getElementById('screenText')
 const buttonSource = document.getElementById('wrapper');
 buttonSource.addEventListener('click', function(e) {
-    if (e.target.textContent == 'backspace') {
-        let tempText = screenText.textContent;
-        screenText.textContent = tempText.slice(0, -1)
-        console.log(tempText)
+    console.log(e.target.id)
+    if (e.target.textContent === 'backspace') {
+        let str = screenText.textContent;
+        screenText.textContent = str.slice(0, -1)
+    } else if (e.target.textContent === 'delete') {
+        screenText.textContent = '';
+        return;
+    } else if (screenText.textContent.length > 20) {
+        return
     } else {
-    screenText.textContent += e.target.textContent;
+        screenText.textContent += e.target.textContent;
     }
+
+
 })
