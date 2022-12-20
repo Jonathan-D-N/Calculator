@@ -43,7 +43,6 @@ button:active {
     -webkit-transition: all .5s;
     background-color: #e5e38c;
     transition-duration: 0.2s;
-    transform: scale(0.8);
 }
 
 .num:hover {
@@ -53,7 +52,6 @@ button:active {
     -moz-transition: all .5s;
     -webkit-transition: all .5s;
     transition-duration: 0.2s;
-    transform: scale(1.1);
 }
 
 #addition:active {
