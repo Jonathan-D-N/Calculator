@@ -26,21 +26,45 @@ function operate (num1, num2) {
 }
 
 //
+// event listeners
+let leftText = ''
+let rightText = ''
 const screenText = document.getElementById('screenText')
-const buttonSource = document.getElementById('wrapper');
-buttonSource.addEventListener('click', function(e) {
-    console.log(e.target.id)
+//numbers
+const numberButtons = document.querySelectorAll('.calculatorNumber')
+for (const element of numberButtons) {
+    element.addEventListener('click', function(e) {
+        if (screenText.textContent.length < 20) {
+        screenText.textContent += e.target.textContent;
+}
+});
+}
+const buttonFunctions = document.getElementById('container')
+//backspace and delete
+buttonFunctions.addEventListener('click', function(e) {
     if (e.target.textContent === 'backspace') {
         let str = screenText.textContent;
         screenText.textContent = str.slice(0, -1)
     } else if (e.target.textContent === 'delete') {
         screenText.textContent = '';
         return;
-    } else if (screenText.textContent.length > 20) {
-        return
-    } else {
-        screenText.textContent += e.target.textContent;
+    } //operators
+      else if (e.target.textContent === '÷' && screenText.textContent > 0) {
+        key = '/'
+        screenText.textContent += e.target.textContent
+    } else if (e.target.textContent === 'x' && screenText.textContent > 0) {
+        key = '*'
+        screenText.textContent += e.target.textContent
+    } else if (e.target.textContent === '-' && screenText.textContent > 0) {
+        key = '-'
+        screenText.textContent += e.target.textContent
+    } else if (e.target.textContent === '+' && screenText.textContent > 0) {
+        key = '+'
+        screenText.textContent += e.target.textContent
     }
-
-
-})
+});
+buttonFunctions.addEventListener('click', function(element) {
+    if (element.target.textContent === '=') {
+        
+    }
+});
