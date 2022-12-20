@@ -1,17 +1,29 @@
 #container {
     display: grid;
-    justify-content: center;
+    place-items: center;
+}
+
+#wrapper {
+    display: grid;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: repeat(6, 100px);
     grid-gap: 1px;
+    border-radius: 5px;
+    background-color: red;
 }
 
 #screenContainer {
+    display: grid;
+    align-content: center;
+    justify-content: end;
     grid-column: 1/5;
     background-color: beige;
-
 }
 
+#screenText {
+    font-size: 36px;
+}
+/* Icons */
 .material-symbols-outlined {
     font-size: 36px;
     line-height: 2;
@@ -29,6 +41,16 @@ button {
     font-family: 'Poppins', sans-serif;
 }
 
+button:active {
+    font-size: 36px!important;
+    border-radius: 20%;
+    transition: all .5s;
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+    background-color: #e5e38c;
+    transition-duration: 0.2s;
+}
+
 #equals {
     grid-column: 4/4;
     grid-row: 5/3;
@@ -41,26 +63,8 @@ button {
     border-radius: 20px;
 }
 
-button:active {
-    font-size: 36px!important;
-    border-radius: 20%;
-    transition: all .5s;
-    -moz-transition: all .5s;
-    -webkit-transition: all .5s;
-    background-color: #e5e38c;
-    transition-duration: 0.2s;
-}
-
-.num:hover {
-    font-size: 36px!important;
-    border-radius: 20%;
-    transition: all .5s;
-    -moz-transition: all .5s;
-    -webkit-transition: all .5s;
-    transition-duration: 0.2s;
-}
-
-#addition:active {
+#equals:active,
+#backspace:active {
     border-radius: 10px;
 
 }
