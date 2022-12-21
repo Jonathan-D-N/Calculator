@@ -9,7 +9,6 @@
     grid-template-rows: repeat(6, 100px);
     grid-gap: 1px;
     border-radius: 5px;
-    background-color: red;
 }
 
 #screenContainer {
