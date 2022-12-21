@@ -5,18 +5,22 @@ let key = '';
 const operators = {
     '+': function(num1, num2) {
         result =  num1 + num2;
+        screenText.textContent = result;
         return result;
     },
     '-': function(num1, num2) {
         result =  num1 - num2;
+        screenText.textContent = result;
         return result;
     },
     '*': function(num1, num2) {
         result =  num1 * num2;
+        screenText.textContent = result;
         return result;
     },
     '/': function(num1, num2) {
         result = num1 / num2;
+        screenText.textContent = result;
         return result;
     }
 }
@@ -68,13 +72,14 @@ const equalsButton = document.getElementById('equals');
 equalsButton.addEventListener('click', function(element) {
     splitEquals(screenText.textContent)
 });
-let resultEquals = [];
+let op1 = 0
+let op2 = 0
 function splitEquals() {
     let str = screenText.textContent;
     let arr = str.split('')
     let results = [];
     let currentNum = '';
-
+if (screenText.textContent.length > 0) {
     for(let i = 0; i < arr.length; i++) {
         let char = arr[i];
         if (/[a-zA-Z0-9]/.test(char)){
@@ -90,6 +95,8 @@ function splitEquals() {
     if(currentNum.length > 0) {
         results.push(currentNum);
     }
-    resultEquals = results
-    console.log(results)
+    op1 = Number(results[0]);
+    op2 = Number(results[2]);
+    operate(op1, op2);
+}
 }
