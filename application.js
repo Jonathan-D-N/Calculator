@@ -34,20 +34,40 @@ function operate (num1, num2, operator) {
 
 //
 const screenText = document.getElementById('screenText');
-const numberButtons = document.querySelectorAll('.calculatorNumber');
+const calculatorButtons = document.querySelectorAll('button');
 pressButtons()
 function pressButtons() {
-    for (const element of numberButtons) {
+    for (const element of calculatorButtons) {
         element.addEventListener('click', function(e) {
-            if (screenText.textContent.length < 20) {
-            screenText.textContent += e.target.textContent;
+            if (screenText.textContent.length < 20 && 
+            (e.target.classList.contains('calculatorNumber') || e.target.classList.contains('printable'))) {
+                displayButtons(e.target.textContent);
+                // screenText.textContent += e.target.textContent;
             }
         });
     }
 }
-// const buttonFunctions = document.getElementById('container')
-// //backspace and delete
-// buttonFunctions.addEventListener('click', function(e) {
+
+function displayButtons(e) {
+    if (e == '÷' && screenText.textContent.includes('÷')
+        || e == '*' && screenText.textContent.includes('*')
+        || e == '-' && screenText.textContent.includes('-')
+        || e == '+' && screenText.textContent.includes('+')){
+        return;
+    }
+     screenText.textContent += e;
+     console.log(e)
+}
+
+function operatorButtons(e) {
+        if (e.target.textContent === 'backspace') {
+        let str = screenText.textContent;
+        screenText.textContent = str.slice(0, -1)
+}
+}
+
+// const functionButtons = document.getElementById('container')
+// functionButtons.addEventListener('click', function(e) {
 //     if (e.target.textContent === 'backspace') {
 //         let str = screenText.textContent;
 //         screenText.textContent = str.slice(0, -1)
