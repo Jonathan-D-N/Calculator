@@ -29,20 +29,15 @@ function operate (num1, num2) {
     return operators[key](num1, num2);
 }
 
-//
-// event listeners
-let leftText = ''
-let rightText = ''
 const screenText = document.getElementById('screenText')
-//numbers
 const numberButtons = document.querySelectorAll('.calculatorNumber')
-for (const element of numberButtons) {
-    element.addEventListener('click', function(e) {
-        if (screenText.textContent.length < 20) {
-        screenText.textContent += e.target.textContent;
-}
-});
-}
+    for (const element of numberButtons) {
+        element.addEventListener('click', function(e) {
+            if (screenText.textContent.length < 20) {
+                screenText.textContent += e.target.textContent;
+            }
+        });
+    }
 const buttonFunctions = document.getElementById('container')
 //backspace and delete
 buttonFunctions.addEventListener('click', function(e) {
