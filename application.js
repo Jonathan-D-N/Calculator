@@ -30,10 +30,6 @@ const operators = {
     }
 }
 
-function operate (num1, num2) {
-    return operators[key](num1, num2);
-}
-
 //check for operator presence. false means no operators present.
 function checkForOperator() {
     if (screenText.textContent.includes("+") ||
@@ -134,7 +130,6 @@ const operatorButtons = document.querySelectorAll('.operator');
                 input2 = ''
                 screenText.textContent = input1
                 checkForPeriod();
-                console.log(input1)
             }
             clearEqualsText(); 
             if (screenText.textContent > 0) {
@@ -153,23 +148,6 @@ const equalsButton = document.getElementById('equals');
         equalsScreenText.textContent = operate(Number(input1), Number(input2));
     });
 
-//keyboard support
-let keyPress = [];
-
-const handler = {
-    set: function(obj, prop, value) {
-      obj[prop] = value;
-      console.log('The keyPress array has changed!');
-      return true;
-    }
-  };
-  
-  keyPress = new Proxy([], handler);
-
-
-
-document.addEventListener('keydown', function(e) {
-    keyPress.push(e.key)
-    console.log(`key ${e.key}`);
-});
-
+    function operate (num1, num2) {
+    return operators[key](num1, num2);
+}
