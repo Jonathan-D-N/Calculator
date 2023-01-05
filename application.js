@@ -152,3 +152,24 @@ const equalsButton = document.getElementById('equals');
         operate(Number(input1), Number(input2))
         equalsScreenText.textContent = operate(Number(input1), Number(input2));
     });
+
+//keyboard support
+let keyPress = [];
+
+const handler = {
+    set: function(obj, prop, value) {
+      obj[prop] = value;
+      console.log('The keyPress array has changed!');
+      return true;
+    }
+  };
+  
+  keyPress = new Proxy([], handler);
+
+
+
+document.addEventListener('keydown', function(e) {
+    keyPress.push(e.key)
+    console.log(`key ${e.key}`);
+});
+
