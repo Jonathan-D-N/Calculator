@@ -3,24 +3,7 @@ let result = '';
 let key = '';
 let input1 = '';
 let input2 = '';
-
-function inputSelector(num1, num2) {
-    input1 = num1;
-    input2 = num2;
-}
 let operatorStatus = false
-function checkForOperator() {
-    if (screenText.textContent.includes("+") ||
-        screenText.textContent.includes("-") ||
-        screenText.textContent.includes("*") ||
-        screenText.textContent.includes("÷")) {
-        operatorStatus = true
-        console.log(operatorStatus)
-    } else {
-        operatorStatus = false
-        console.log(operatorStatus)
-    }
-}
 
 const operators = {
     '+': function(num1, num2) {
@@ -49,6 +32,20 @@ function operate (num1, num2) {
     return operators[key](num1, num2);
 }
 
+//check for operator presence. false means no operators present.
+function checkForOperator() {
+    if (screenText.textContent.includes("+") ||
+        screenText.textContent.includes("-") ||
+        screenText.textContent.includes("*") ||
+        screenText.textContent.includes("÷")) {
+        operatorStatus = true
+        console.log(operatorStatus)
+    } else {
+        operatorStatus = false
+        console.log(operatorStatus)
+    }
+}
+
 //number buttons
 const screenText = document.getElementById('screenText')
 const numberButtons = document.querySelectorAll('.calculatorNumber')
@@ -59,11 +56,9 @@ const numberButtons = document.querySelectorAll('.calculatorNumber')
                 if (operatorStatus == false)   { 
                 screenText.textContent += e.target.textContent;
                 input1 += (e.target.textContent);
-                inputSelector(input1, input2);
                 } else {
                     screenText.textContent += e.target.textContent;
                     input2 += (e.target.textContent);
-                    inputSelector(input1, input2);
                 }
             }
         });
