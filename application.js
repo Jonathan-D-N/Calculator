@@ -4,6 +4,8 @@ let key = '';
 let input1 = '';
 let input2 = '';
 let operatorStatus = false
+const screenText = document.getElementById('screenText')
+const equalsScreenText = document.getElementById('equalsScreenText')
 
 const operators = {
     '+': function(num1, num2) {
@@ -47,7 +49,6 @@ function clearEqualsText() {
     equalsScreenText.textContent = ''
 }
 //number buttons
-const screenText = document.getElementById('screenText')
 const numberButtons = document.querySelectorAll('.calculatorNumber')
     for (const element of numberButtons) {
         element.addEventListener('click', function(e) {    
@@ -118,6 +119,7 @@ const clearButton = document.getElementById('clear');
     clearButton.addEventListener('click', function() {
         clearEqualsText(); 
         screenText.textContent = '';
+        result = ''
         input1 = '';
         input2 = '';
         checkForOperator();
@@ -144,7 +146,6 @@ const operatorButtons = document.querySelectorAll('.operator');
     }
 
 //equals button
-const equalsScreenText = document.getElementById('equalsScreenText')
 const equalsButton = document.getElementById('equals');
     equalsButton.addEventListener('click', function(e) {
         clearEqualsText(); 
