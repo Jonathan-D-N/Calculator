@@ -8,22 +8,22 @@ let operatorStatus = false
 const operators = {
     '+': function(num1, num2) {
         result =  num1 + num2;
-        screenText.textContent = result;
+        //screenText.textContent = result;
         return result;
     },
     '-': function(num1, num2) {
         result =  num1 - num2;
-        screenText.textContent = result;
+        //screenText.textContent = result;
         return result;
     },
     '*': function(num1, num2) {
         result =  num1 * num2;
-        screenText.textContent = result;
+        //screenText.textContent = result;
         return result;
     },
     '÷': function(num1, num2) {
         result = num1 / num2;
-        screenText.textContent = result;
+        //screenText.textContent = result;
         return result;
     }
 }
@@ -101,8 +101,9 @@ const additionButton = document.querySelectorAll('.operator');
     }
 
 //equals button
+const equalsScreenText = document.getElementById('equalsScreenText')
 const equalsButton = document.getElementById('equals');
     equalsButton.addEventListener('click', function(e) {
         operate(~~input1, ~~input2)
-        screenText.textContent = operate(~~input1, ~~input2);
+        equalsScreenText.textContent = operate(~~input1, ~~input2);
     });
