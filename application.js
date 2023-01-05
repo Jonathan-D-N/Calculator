@@ -6,9 +6,7 @@ let input2 = '';
 
 function inputSelector(num1, num2) {
     input1 = num1;
-    console.log('input1: ', input1);
     input2 = num2;
-    console.log('input2: ', input2)
 }
 let operatorStatus = false
 function checkForOperator() {
@@ -16,11 +14,11 @@ function checkForOperator() {
         screenText.textContent.includes("-") ||
         screenText.textContent.includes("*") ||
         screenText.textContent.includes("÷")) {
-        console.log('true')
         operatorStatus = true
+        console.log(operatorStatus)
     } else {
-        console.log('false')
         operatorStatus = false
+        console.log(operatorStatus)
     }
 }
 
@@ -96,38 +94,13 @@ const clearButton = document.getElementById('clear');
     });
 
 //operator buttons
-const additionButton = document.getElementById('addition');
-    additionButton.addEventListener('click', function(e) {
-        if (screenText.textContent > 0) {
-            checkForOperator();
-            key = '+';
-            screenText.textContent += '+';
-        }
-    });
-
-const subtractButton = document.getElementById('subtract');
-    subtractButton.addEventListener('click', function(e) {
-        if (screenText.textContent > 0) {
-            checkForOperator();
-            key = '-';
-            screenText.textContent += '-';
-        }
-    });
-
-const multiplyButton = document.getElementById('multiply');
-    multiplyButton.addEventListener('click', function(e) {
-        if (screenText.textContent > 0) {
-            checkForOperator();
-            key = '*';
-            screenText.textContent += '*';
-        }
-    });
-
-const divideButton = document.getElementById('divide');
-    divideButton.addEventListener('click', function(e) {
-        if (screenText.textContent > 0) {
-            checkForOperator();
-            key = '÷';
-            screenText.textContent += '÷';
-        }
-    });
+const additionButton = document.querySelectorAll('.operator');
+    for (const element of additionButton) {
+        element.addEventListener('click', function(e) {
+            if (screenText.textContent > 0) {
+                key = e.target.textContent;
+                screenText.textContent += e.target.textContent;
+                checkForOperator();
+            }
+        });
+    }
