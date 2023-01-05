@@ -64,6 +64,38 @@ const numberButtons = document.querySelectorAll('.calculatorNumber')
             }
         });
     }
+//period button
+let periodPresent1 = false;
+let periodPresent2 = false;
+function checkForPeriod() {
+    if (input1.includes('.')) {
+        periodPresent1 = true
+    } else {
+        periodPresent1 = false
+    }
+    if (input2.includes('.')) {
+        periodPresent2 = true
+    } else {
+        periodPresent2 = false
+    }
+}
+const periodButton = document.getElementById('period');
+    periodButton.addEventListener('click', function(e) {
+        clearEqualsText();
+        checkForPeriod();
+        if (screenText.textContent.length < 20) {
+            if (operatorStatus == false && periodPresent1 == false)   {
+                screenText.textContent += e.target.textContent;
+                input1 += (e.target.textContent);
+                checkForPeriod();
+                } else if (operatorStatus == true && periodPresent2 == false) {
+                    screenText.textContent += e.target.textContent;
+                    input2 += (e.target.textContent);
+                    checkForPeriod();
+                }
+        }
+    });
+
 //backspace button
 const backspaceButton = document.getElementById('backspace');
     backspaceButton.addEventListener('click', function() {
@@ -95,6 +127,13 @@ const clearButton = document.getElementById('clear');
 const operatorButtons = document.querySelectorAll('.operator');
     for (const element of operatorButtons) {
         element.addEventListener('click', function(e) {
+            if (equalsScreenText.textContent != ''){
+                input1 = result.toString();
+                input2 = ''
+                screenText.textContent = input1
+                checkForPeriod();
+                console.log(input1)
+            }
             clearEqualsText(); 
             if (screenText.textContent > 0) {
                 key = e.target.textContent;
@@ -109,6 +148,6 @@ const equalsScreenText = document.getElementById('equalsScreenText')
 const equalsButton = document.getElementById('equals');
     equalsButton.addEventListener('click', function(e) {
         clearEqualsText(); 
-        operate(~~input1, ~~input2)
-        equalsScreenText.textContent = operate(~~input1, ~~input2);
+        operate(Number(input1), Number(input2))
+        equalsScreenText.textContent = operate(Number(input1), Number(input2));
     });
