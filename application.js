@@ -21,7 +21,7 @@ const operators = {
         screenText.textContent = result;
         return result;
     },
-    '/': function(num1, num2) {
+    '÷': function(num1, num2) {
         result = num1 / num2;
         screenText.textContent = result;
         return result;
@@ -99,3 +99,10 @@ const additionButton = document.querySelectorAll('.operator');
             }
         });
     }
+
+//equals button
+const equalsButton = document.getElementById('equals');
+    equalsButton.addEventListener('click', function(e) {
+        operate(~~input1, ~~input2)
+        screenText.textContent = operate(~~input1, ~~input2);
+    });
