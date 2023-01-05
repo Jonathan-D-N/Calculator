@@ -22,6 +22,11 @@
 #screenText {
     font-size: 36px;
 }
+
+#equalsScreenText {
+    font-size: 36px;
+}
+
 /* Icons */
 .material-symbols-outlined {
     font-size: 36px;
