@@ -19,33 +19,6 @@ clearButton.addEventListener('click', clear);
 equalsButton.addEventListener('click', evaluate)
 window.addEventListener('keydown', takeKeyboardInput)
 
-const operators = {
-    '+': function(num1, num2) {
-        result =  num1 + num2;
-        //screenText.textContent = result;
-        return result;
-    },
-    '-': function(num1, num2) {
-        result =  num1 - num2;
-        //screenText.textContent = result;
-        return result;
-    },
-    '*': function(num1, num2) {
-        result =  num1 * num2;
-        //screenText.textContent = result;
-        return result;
-    },
-    '÷': function(num1, num2) {
-        result = num1 / num2;
-        //screenText.textContent = result;
-        return result;
-    }
-}
-
-function operate (num1, num2) {
-    return operators[key](num1, num2);
-}
-
 //check for operator presence. false means no operators present.
 function checkForOperator() {
     if (screenText.textContent.includes("+") ||
@@ -128,7 +101,6 @@ operatorButtons.forEach((element) =>
         inputOperator(element.textContent)
     }))
 function inputOperator(op) {
-    console.log(op)
     if (equalsScreenText.textContent != ''){
         input1 = result.toString();
         input2 = ''
@@ -142,9 +114,10 @@ function inputOperator(op) {
     }
 }
 //equals button
-
-
 function evaluate() {
+    if (key == '') {
+        return;
+    }
     clearEqualsText(); 
     operate(Number(input1), Number(input2))
     equalsScreenText.textContent = operate(Number(input1), Number(input2));
@@ -166,4 +139,31 @@ function convertOperator(keyboardInput) {
     if (keyboardInput === '+') return '+'
     if (keyboardInput === '-') return '-'
     if (keyboardInput === '*') return '*'
+}
+
+const operators = {
+    '+': function(num1, num2) {
+        result =  num1 + num2;
+        //screenText.textContent = result;
+        return result;
+    },
+    '-': function(num1, num2) {
+        result =  num1 - num2;
+        //screenText.textContent = result;
+        return result;
+    },
+    '*': function(num1, num2) {
+        result =  num1 * num2;
+        //screenText.textContent = result;
+        return result;
+    },
+    '÷': function(num1, num2) {
+        result = num1 / num2;
+        //screenText.textContent = result;
+        return result;
+    }
+}
+
+function operate (num1, num2) {
+    return operators[key](num1, num2);
 }
