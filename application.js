@@ -3,9 +3,21 @@ let result = '';
 let key = '';
 let input1 = '';
 let input2 = '';
-let operatorStatus = false
+let operatorPresent = false
+
 const screenText = document.getElementById('screenText')
 const equalsScreenText = document.getElementById('equalsScreenText')
+const numberButtons = document.querySelectorAll('.calculatorNumber')
+const periodButton = document.getElementById('period');
+const backspaceButton = document.getElementById('backspace');
+const clearButton = document.getElementById('clear');
+const equalsButton = document.getElementById('equals');
+const operatorButtons = document.querySelectorAll('.operator');
+
+backspaceButton.addEventListener('click', backspace)
+clearButton.addEventListener('click', clear);
+equalsButton.addEventListener('click', evaluate)
+window.addEventListener('keydown', takeKeyboardInput)
 
 const operators = {
     '+': function(num1, num2) {
@@ -30,74 +42,65 @@ const operators = {
     }
 }
 
+function operate (num1, num2) {
+    return operators[key](num1, num2);
+}
+
 //check for operator presence. false means no operators present.
 function checkForOperator() {
     if (screenText.textContent.includes("+") ||
         screenText.textContent.includes("-") ||
         screenText.textContent.includes("*") ||
         screenText.textContent.includes("÷")) {
-        operatorStatus = true
+        operatorPresent = true
     } else {
-        operatorStatus = false
+        operatorPresent = false
     }
 }
 function clearEqualsText() {
     equalsScreenText.textContent = ''
 }
 //number buttons
-const numberButtons = document.querySelectorAll('.calculatorNumber')
-    for (const element of numberButtons) {
-        element.addEventListener('click', function(e) {    
-            checkForOperator();
-            clearEqualsText();    
-            if (screenText.textContent.length < 20) {
-                if (operatorStatus == false)   { 
-                screenText.textContent += e.target.textContent;
-                input1 += (e.target.textContent);
-                } else {
-                    screenText.textContent += e.target.textContent;
-                    input2 += (e.target.textContent);
-                }
-            }
-        });
-    }
-//period button
-let periodPresent1 = false;
-let periodPresent2 = false;
-function checkForPeriod() {
-    if (input1.includes('.')) {
-        periodPresent1 = true
-    } else {
-        periodPresent1 = false
-    }
-    if (input2.includes('.')) {
-        periodPresent2 = true
-    } else {
-        periodPresent2 = false
+numberButtons.forEach((element) =>
+    element.addEventListener('click', function() {    
+        checkForOperator();
+        clearEqualsText();   
+        inputNumber(element.textContent);
+    })
+);
+
+function inputNumber(num) {
+    if (screenText.textContent.length < 20) {
+        if (operatorPresent == false)   { 
+        screenText.textContent += num;
+        input1 += (num);
+        } else {
+            screenText.textContent += num;
+            input2 += (num);
+        }
     }
 }
-const periodButton = document.getElementById('period');
-    periodButton.addEventListener('click', function(e) {
-        clearEqualsText();
-        checkForPeriod();
-        if (screenText.textContent.length < 20) {
-            if (operatorStatus == false && periodPresent1 == false)   {
-                screenText.textContent += e.target.textContent;
-                input1 += (e.target.textContent);
-                checkForPeriod();
-                } else if (operatorStatus == true && periodPresent2 == false) {
-                    screenText.textContent += e.target.textContent;
-                    input2 += (e.target.textContent);
-                    checkForPeriod();
-                }
-        }
-    });
+//period button
+periodButton.addEventListener('click', function() {
+    clearEqualsText();
+    inputPeriod(periodButton.textContent)    
+});
+
+function inputPeriod(e) {
+    if (screenText.textContent.length < 20) {
+        if (!operatorPresent && !input1.includes('.'))   {
+            screenText.textContent += '.';
+            input1 += '.';
+            } else if (operatorPresent && !input2.includes('.')) {
+                screenText.textContent += ('.');
+                input2 += ('.');
+            }
+    }
+}
 
 //backspace button
-const backspaceButton = document.getElementById('backspace');
-    backspaceButton.addEventListener('click', function() {
-        clearEqualsText(); 
-        if (operatorStatus == false) {
+function backspace() {
+    if (!operatorPresent) {
         let str = screenText.textContent;
         screenText.textContent = str.slice(0, -1);
         input1 = input1.slice(0, -1);
@@ -108,46 +111,59 @@ const backspaceButton = document.getElementById('backspace');
             input2 = input2.slice(0, -1);
             checkForOperator();
         }
-    });
-
+}
 //clear button
-const clearButton = document.getElementById('clear');
-    clearButton.addEventListener('click', function() {
-        clearEqualsText(); 
-        screenText.textContent = '';
-        result = ''
-        input1 = '';
-        input2 = '';
-        checkForOperator();
-    });
+function clear() {
+    clearEqualsText(); 
+    screenText.textContent = '';
+    result = '';
+    input1 = '';
+    input2 = '';
+    checkForOperator();
+}
 
 //operator buttons
-const operatorButtons = document.querySelectorAll('.operator');
-    for (const element of operatorButtons) {
-        element.addEventListener('click', function(e) {
-            if (equalsScreenText.textContent != ''){
-                input1 = result.toString();
-                input2 = ''
-                screenText.textContent = input1
-                checkForPeriod();
-            }
-            clearEqualsText(); 
-            if (screenText.textContent > 0) {
-                key = e.target.textContent;
-                screenText.textContent += e.target.textContent;
-                checkForOperator();
-            }
-        });
-    }
-
-//equals button
-const equalsButton = document.getElementById('equals');
-    equalsButton.addEventListener('click', function(e) {
+operatorButtons.forEach((element) =>
+    element.addEventListener('click', function() {
+        inputOperator(element.textContent)
+    }))
+function inputOperator(op) {
+    console.log(op)
+    if (equalsScreenText.textContent != ''){
+        input1 = result.toString();
+        input2 = ''
+        screenText.textContent = input1
         clearEqualsText(); 
-        operate(Number(input1), Number(input2))
-        equalsScreenText.textContent = operate(Number(input1), Number(input2));
-    });
+    }
+    if (screenText.textContent > 0) {
+        key = (op);
+        screenText.textContent += (op);
+        checkForOperator();
+    }
+}
+//equals button
 
-    function operate (num1, num2) {
-    return operators[key](num1, num2);
+
+function evaluate() {
+    clearEqualsText(); 
+    operate(Number(input1), Number(input2))
+    equalsScreenText.textContent = operate(Number(input1), Number(input2));
+}
+
+//keyboard input
+function takeKeyboardInput(e) {
+    if (e.key >= 0 && e.key <= 9) inputNumber(e.key);
+    if (e.key === '.') inputPeriod();
+    if (e.key === 'Delete' || e.key == 'Escape') clear();
+    if (e.key === 'Backspace') backspace();
+    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') 
+    inputOperator(convertOperator(e.key))
+    if (e.key === '=') evaluate();
+}
+
+function convertOperator(keyboardInput) {
+    if (keyboardInput === '/') return '÷'
+    if (keyboardInput === '+') return '+'
+    if (keyboardInput === '-') return '-'
+    if (keyboardInput === '*') return '*'
 }
