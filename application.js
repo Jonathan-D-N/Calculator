@@ -6,20 +6,20 @@ let input2 = '';
 let operatorPresent = false
 
 const screenText = document.getElementById('screenText')
-const equalsScreenText = document.getElementById('equalsScreenText')
+const evaluatedText = document.getElementById('evaluatedText')
 const numberButtons = document.querySelectorAll('.calculatorNumber')
 const periodButton = document.getElementById('period');
 const backspaceButton = document.getElementById('backspace');
 const clearButton = document.getElementById('clear');
-const equalsButton = document.getElementById('equals');
+const evaluateButton = document.getElementById('evaluate');
 const operatorButtons = document.querySelectorAll('.operator');
 
 backspaceButton.addEventListener('click', backspace)
 clearButton.addEventListener('click', clear);
-equalsButton.addEventListener('click', evaluate)
+evaluateButton.addEventListener('click', evaluate)
 window.addEventListener('keydown', takeKeyboardInput)
 
-//check for operator presence. false means no operators present.
+//check for operator presence.
 function checkForOperator() {
     if (screenText.textContent.includes("+") ||
         screenText.textContent.includes("-") ||
@@ -30,19 +30,19 @@ function checkForOperator() {
         operatorPresent = false
     }
 }
-function clearEqualsText() {
-    equalsScreenText.textContent = ''
+function clearEvaluatedText() {
+    evaluatedText.textContent = ''
 }
 //number buttons
 numberButtons.forEach((element) =>
     element.addEventListener('click', function() {    
-        checkForOperator();
-        clearEqualsText();   
         inputNumber(element.textContent);
     })
 );
 
 function inputNumber(num) {
+    checkForOperator();
+    clearEvaluatedText();
     if (screenText.textContent.length < 20) {
         if (operatorPresent == false)   { 
         screenText.textContent += num;
@@ -51,15 +51,17 @@ function inputNumber(num) {
             screenText.textContent += num;
             input2 += (num);
         }
+    } else {
+        console.log('test')
     }
 }
 //period button
 periodButton.addEventListener('click', function() {
-    clearEqualsText();
+    clearEvaluatedText();
     inputPeriod(periodButton.textContent)    
 });
 
-function inputPeriod(e) {
+function inputPeriod() {
     if (screenText.textContent.length < 20) {
         if (!operatorPresent && !input1.includes('.'))   {
             screenText.textContent += '.';
@@ -87,7 +89,7 @@ function backspace() {
 }
 //clear button
 function clear() {
-    clearEqualsText(); 
+    clearEvaluatedText(); 
     screenText.textContent = '';
     result = '';
     input1 = '';
@@ -101,11 +103,11 @@ operatorButtons.forEach((element) =>
         inputOperator(element.textContent)
     }))
 function inputOperator(op) {
-    if (equalsScreenText.textContent != ''){
+    if (evaluatedText.textContent != ''){
         input1 = result.toString();
         input2 = ''
         screenText.textContent = input1
-        clearEqualsText(); 
+        clearEvaluatedText(); 
     }
     if (screenText.textContent > 0) {
         key = (op);
@@ -113,14 +115,14 @@ function inputOperator(op) {
         checkForOperator();
     }
 }
-//equals button
+//evaluate button
 function evaluate() {
     if (key == '') {
         return;
     }
-    clearEqualsText(); 
+    clearEvaluatedText(); 
     operate(Number(input1), Number(input2))
-    equalsScreenText.textContent = operate(Number(input1), Number(input2));
+    evaluatedText.textContent = operate(Number(input1), Number(input2));
 }
 
 //keyboard input
@@ -129,9 +131,9 @@ function takeKeyboardInput(e) {
     if (e.key === '.') inputPeriod();
     if (e.key === 'Delete' || e.key == 'Escape') clear();
     if (e.key === 'Backspace') backspace();
-    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') 
-    inputOperator(convertOperator(e.key))
-    if (e.key === '=') evaluate();
+    if (e.key === '+' || e.key === '-' || e.key === '*') inputOperator(e.key)
+    if (e.key === '/') inputOperator('÷')
+    if (e.key === '=' || e.key === 'Enter') evaluate();
 }
 
 function convertOperator(keyboardInput) {
