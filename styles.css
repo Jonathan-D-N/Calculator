@@ -1,3 +1,6 @@
+* {
+    background-color: rgb(32, 32, 32);
+}
 #container {
     display: grid;
     place-items: center;
@@ -7,8 +10,9 @@
     display: grid;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: repeat(6, 100px);
-    grid-gap: 1px;
+    grid-gap: 3px;
     border-radius: 5px;
+    background-color: rgb(32, 32, 32);
 }
 
 #screenContainer {
@@ -16,15 +20,17 @@
     align-content: center;
     justify-content: end;
     grid-column: 1/5;
-    background-color: beige;
+    background-color: rgb(32, 32, 32);
 }
 
 #screenText {
     font-size: 36px;
+    color: white;
 }
 
-#equalsScreenText {
+#evaluatedText {
     font-size: 36px;
+    color: white;
 }
 
 /* Icons */
@@ -35,7 +41,7 @@
 
 button {
     box-sizing: border-box;
-    border-radius: 50%;
+    border-radius: 10px;
     border: 0px;
     font-size: 36px;
     transition: all .5s;
@@ -43,32 +49,38 @@ button {
     -moz-transition: all .5s;
     -webkit-transition: all .5s;
     font-family: 'Poppins', sans-serif;
+    background-color: rgb(59, 59, 59);
+    color: rgb(255, 255, 255);
 }
 
 button:active {
     font-size: 36px!important;
-    border-radius: 20%;
+    border-radius: 20px;
     transition: all .5s;
     -moz-transition: all .5s;
     -webkit-transition: all .5s;
-    background-color: #e5e38c;
+    background-color: rgb(45, 45, 45);
     transition-duration: 0.2s;
 }
 
-#equals {
+button:hover {
+    background-color: rgb(57, 57, 57);
+}
+
+#evaluate {
     grid-column: 4/4;
     grid-row: 5/3;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 #backspace {
     grid-column: 4/4;
     grid-row: 5/7;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
-#equals:active,
+#evaluate:active,
 #backspace:active {
-    border-radius: 10px;
+    border-radius: 20px;
 
 }
