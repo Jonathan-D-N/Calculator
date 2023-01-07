@@ -18,6 +18,16 @@ backspaceButton.addEventListener('click', backspace)
 clearButton.addEventListener('click', clear);
 evaluateButton.addEventListener('click', evaluate)
 window.addEventListener('keydown', takeKeyboardInput)
+document.addEventListener('keydown', checkForEvaluatedText)
+window.addEventListener('click', checkForEvaluatedText)
+
+function checkForEvaluatedText() {
+    if (evaluatedText.textContent !== '') {
+        screenText.style.color = '#C8C8C8';
+    } else {
+        screenText.style.color = '#FFFFFF'
+    }
+}
 
 //check for operator presence.
 function checkForOperator() {
@@ -81,6 +91,9 @@ function backspace() {
         input1 = input1.slice(0, -1);
         }
         else {
+            if (evaluatedText.textContent !== '') {
+                screenText.textContent = '';
+            }
             let str = screenText.textContent;
             screenText.textContent = str.slice(0, -1);
             input2 = input2.slice(0, -1);
