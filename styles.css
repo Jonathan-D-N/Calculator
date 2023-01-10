@@ -1,11 +1,15 @@
+:root {
+    font-family: 'Poppins', sans-serif;
+}
+
 body {
     margin: 0;
+    background-color: rgb(32, 32, 32);
 }
 
 #container {
     display: grid;
-    justify-content: center;
-    align-content: center;
+    place-content: center;
     min-width: 98vw;
     min-height: 98vh;
 }
@@ -18,21 +22,25 @@ body {
     border-radius: 10px;
     background-color: rgb(32, 32, 32);
     padding: 0px 4px 4px 4px;
-    font-family: 'Poppins', sans-serif;
 }
 
 #screenContainer {
     display: grid;
-    grid-template-columns: 1;
-    grid-template-rows: repeat(2, 50px);
+    grid-column: 1/5;
+    grid-row: 3/1;
     align-content: center;
     justify-content: end;
     border-radius: 10px;
     background-color: rgb(65, 65, 65);
-    margin: 15px 10px 15px 10px;
-    /*grid placement within #wrapper*/
-    grid-column: 1/5;
-    grid-row: 3/1;
+    margin: 15px 0px 15px 0px;
+}
+
+#screenText {
+    display: flex;
+    justify-content: end;
+    margin-right: 15px;
+    font-size: 36px;
+    color: rgb(255, 255, 255);
 }
 
 #evaluatedText {
@@ -40,12 +48,6 @@ body {
     justify-content: end;
     margin-right: 15px;
     font-size: 54px;
-    color: rgb(255, 255, 255);
-}
-
-#screenText {
-    margin-right: 15px;
-    font-size: 36px;
     color: rgb(255, 255, 255);
 }
 
