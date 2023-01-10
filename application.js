@@ -149,31 +149,24 @@ function takeKeyboardInput(e) {
     if (e.key === '=' || e.key === 'Enter') evaluate();
 }
 
-function convertOperator(keyboardInput) {
-    if (keyboardInput === '/') return '÷'
-    if (keyboardInput === '+') return '+'
-    if (keyboardInput === '-') return '-'
-    if (keyboardInput === '*') return '*'
-}
-
 const operators = {
     '+': function(num1, num2) {
-        result =  num1 + num2;
+        result =  Math.round((num1 + num2) * 100) / 100;
         //screenText.textContent = result;
         return result;
     },
     '-': function(num1, num2) {
-        result =  num1 - num2;
+        result =  Math.round((num1 - num2) * 100) /100;
         //screenText.textContent = result;
         return result;
     },
     '*': function(num1, num2) {
-        result =  num1 * num2;
+        result =  Math.round((num1 * num2) * 100) /100;
         //screenText.textContent = result;
         return result;
     },
     '÷': function(num1, num2) {
-        result = num1 / num2;
+        result = Math.round((num1 / num2) * 100) /100;
         //screenText.textContent = result;
         return result;
     }
