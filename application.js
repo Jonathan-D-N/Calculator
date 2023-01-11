@@ -91,9 +91,6 @@ function backspace() {
         input1 = input1.slice(0, -1);
         }
         else {
-            if (evaluatedText.textContent !== '') {
-                screenText.textContent = '';
-            }
             let str = screenText.textContent;
             screenText.textContent = str.slice(0, -1);
             input2 = input2.slice(0, -1);
