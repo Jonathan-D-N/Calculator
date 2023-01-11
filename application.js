@@ -129,10 +129,22 @@ function inputOperator(op) {
 function evaluate() {
     if (key == '') {
         return;
-    }
+    } else if ((key == '÷' && input2 == '0') || (key == '÷' && input2 == '')){
+        clearEvaluatedText();
+        evaluatedText.textContent = 'ERROR';
+        screenText.textContent = '';
+        input2 = ''
+        const wrapper = document.getElementById('wrapper');
+        wrapper.classList.add('error');
+        setTimeout(function() {
+            wrapper.classList.remove('error')
+        }, 500);
+
+    } else {
     clearEvaluatedText(); 
     operate(Number(input1), Number(input2))
     evaluatedText.textContent = operate(Number(input1), Number(input2));
+    }
 }
 
 //keyboard input
@@ -149,22 +161,18 @@ function takeKeyboardInput(e) {
 const operators = {
     '+': function(num1, num2) {
         result =  Math.round((num1 + num2) * 100) / 100;
-        //screenText.textContent = result;
         return result;
     },
     '-': function(num1, num2) {
         result =  Math.round((num1 - num2) * 100) /100;
-        //screenText.textContent = result;
         return result;
     },
     '*': function(num1, num2) {
         result =  Math.round((num1 * num2) * 100) /100;
-        //screenText.textContent = result;
         return result;
     },
     '÷': function(num1, num2) {
         result = Math.round((num1 / num2) * 100) /100;
-        //screenText.textContent = result;
         return result;
     }
 }
