@@ -33,6 +33,7 @@ body {
     border-radius: 10px;
     background-color: rgb(65, 65, 65);
     margin: 15px 0px 15px 0px;
+    animation: fadeInDown 1.2s;
 }
 
 #screenText {
@@ -58,7 +59,6 @@ body {
 }
 /* buttons */
 button {
-    box-sizing: border-box;
     border-radius: 10px;
     border: 0px;
     font-size: 36px;
@@ -137,4 +137,85 @@ button:active {
         grid-template-columns: repeat(4, 85px);
         grid-template-rows: repeat(7, 85px);
     }
+}
+
+/* keyframes */
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(300%)
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%)
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-300%)
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(300%)
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+    0% { transform: translate(2px, 2px) rotate(0deg); }
+    10% { transform: translate(-2px, -4px) rotate(-2deg); }
+    20% { transform: translate(-6px, 0px) rotate(2deg); }
+    30% { transform: translate(6px, 4px) rotate(0deg); }
+    40% { transform: translate(2px, -2px) rotate(2deg); }
+    50% { transform: translate(-2px, 4px) rotate(-2deg); }
+    60% { transform: translate(-6px, 2px) rotate(0deg); }
+    70% { transform: translate(6px, 2px) rotate(-2deg); }
+    80% { transform: translate(-2px, -2px) rotate(2deg); }
+    90% { transform: translate(2px, 4px) rotate(0deg); }
+    100% { transform: translate(2px, 4px) rotate(-2deg); }
+  }
+
+.row1 {
+    animation: fadeInDown 1s;
+}
+
+.row2 {
+    animation: fadeInRight 1s;
+}
+
+.row3 {
+    animation: fadeInRight 1.2s;
+}
+
+.row4 {
+    animation: fadeInUp 1s;
+}
+
+.row5 {
+    animation: fadeInUp 1.2s;
+}
+
+.error {
+    animation: shake 0.5s;
 }
