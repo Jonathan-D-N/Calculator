@@ -132,7 +132,6 @@ function evaluate() {
     } else if ((key == '÷' && input2 == '0') || (key == '÷' && input2 == '')){
         clearEvaluatedText();
         evaluatedText.textContent = 'ERROR';
-        screenText.textContent = '';
         input2 = ''
         const wrapper = document.getElementById('wrapper');
         wrapper.classList.add('error');
