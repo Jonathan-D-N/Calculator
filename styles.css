@@ -33,7 +33,7 @@ body {
     border-radius: 10px;
     background-color: rgb(65, 65, 65);
     margin: 15px 0px 15px 0px;
-    animation: fadeInDown 1.2s;
+    animation: fadeInDown 1s;
 }
 
 #screenText {
@@ -141,27 +141,6 @@ button:active {
 
 /* keyframes */
 
-@keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(300%)
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-
-@keyframes fadeInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-100%)
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -196,24 +175,8 @@ button:active {
     100% { transform: translate(2px, 4px) rotate(-2deg); }
   }
 
-.row1 {
-    animation: fadeInDown 1s;
-}
-
-.row2 {
-    animation: fadeInRight 1s;
-}
-
-.row3 {
-    animation: fadeInRight 1.2s;
-}
-
-.row4 {
+.row1, .row2, .row3, .row4, .row5 {
     animation: fadeInUp 1s;
-}
-
-.row5 {
-    animation: fadeInUp 1.2s;
 }
 
 .error {
