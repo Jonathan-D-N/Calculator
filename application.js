@@ -127,9 +127,12 @@ function inputOperator(op) {
 }
 //evaluate button
 function evaluate() {
+    let tempInput2 = Number(input2)
+    console.log(typeof(tempInput2))
+    console.log(tempInput2)
     if (key == '') {
         return;
-    } else if ((key == '÷' && input2 == '0') || (key == '÷' && input2 == '')){
+    } else if ((key == '÷' && tempInput2 == '0') || (key == '÷' && tempInput2 == '')){
         clearEvaluatedText();
         evaluatedText.textContent = 'ERROR';
         input2 = ''
